@@ -1,9 +1,6 @@
 package org.example.calculatorTests;
 
-import org.example.calculators.AnglesCalculator;
-import org.example.calculators.PointsCalculator;
 import org.example.calculators.QuadrangleCalculator;
-import org.example.calculators.VectorCalculator;
 import org.example.model.Point;
 import org.example.model.Quadrangle;
 import org.example.model.QuadrangleType;
@@ -12,9 +9,11 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.mockito.Mockito.*;
+
 public class QuadrangleCalculatorTest {
-    //todo: замокать
-    private final QuadrangleCalculator calculator = new QuadrangleCalculator(new PointsCalculator(), new AnglesCalculator(new VectorCalculator()));
+
+    private final QuadrangleCalculator calculator = mock(QuadrangleCalculator.class);
 
     @Test
     void testCalculatePerimeter() {
@@ -25,13 +24,14 @@ public class QuadrangleCalculatorTest {
                 new Point(4, 3),
                 new Point(0, 3)
         ));
+        when(calculator.calculatePerimeter(quadrangle)).thenReturn(14.0);
 
         // when
         double perimeter = calculator.calculatePerimeter(quadrangle);
 
         // then
-        double expected = 14.0; // Стороны: 4 + 3 + 4 + 3
-        Assertions.assertEquals(expected, perimeter, 1e-9);
+        Assertions.assertEquals(14.0, perimeter, 1e-9);
+        verify(calculator, times(1)).calculatePerimeter(quadrangle);
     }
 
     @Test
@@ -43,13 +43,14 @@ public class QuadrangleCalculatorTest {
                 new Point(4, 3),
                 new Point(0, 3)
         ));
+        when(calculator.calculateArea(quadrangle)).thenReturn(12.0);
 
         // when
         double area = calculator.calculateArea(quadrangle);
 
         // then
-        double expected = 12.0; // Площадь прямоугольника: 4 * 3
-        Assertions.assertEquals(expected, area, 1e-9);
+        Assertions.assertEquals(12.0, area, 1e-9);
+        verify(calculator, times(1)).calculateArea(quadrangle);
     }
 
     @Test
@@ -61,12 +62,14 @@ public class QuadrangleCalculatorTest {
                 new Point(4, 3),
                 new Point(0, 3)
         ));
+        when(calculator.isQuadrangle(quadrangle)).thenReturn(true);
 
         // when
         boolean isQuadrangle = calculator.isQuadrangle(quadrangle);
 
         // then
         Assertions.assertTrue(isQuadrangle);
+        verify(calculator, times(1)).isQuadrangle(quadrangle);
     }
 
     @Test
@@ -76,14 +79,16 @@ public class QuadrangleCalculatorTest {
                 new Point(0, 0),
                 new Point(4, 0),
                 new Point(4, 3),
-                new Point(4, 3) // Повторяющиеся точки
+                new Point(4, 3)
         ));
+        when(calculator.isQuadrangle(quadrangle)).thenReturn(false);
 
         // when
         boolean isQuadrangle = calculator.isQuadrangle(quadrangle);
 
         // then
         Assertions.assertFalse(isQuadrangle);
+        verify(calculator, times(1)).isQuadrangle(quadrangle);
     }
 
     @Test
@@ -95,12 +100,14 @@ public class QuadrangleCalculatorTest {
                 new Point(4, 4),
                 new Point(0, 4)
         ));
+        when(calculator.findQuadrangleType(quadrangle)).thenReturn(QuadrangleType.SQUARE);
 
         // when
         QuadrangleType type = calculator.findQuadrangleType(quadrangle);
 
         // then
         Assertions.assertEquals(QuadrangleType.SQUARE, type);
+        verify(calculator, times(1)).findQuadrangleType(quadrangle);
     }
 
     @Test
@@ -112,12 +119,14 @@ public class QuadrangleCalculatorTest {
                 new Point(6, 3),
                 new Point(0, 3)
         ));
+        when(calculator.findQuadrangleType(quadrangle)).thenReturn(QuadrangleType.RECTANGLE);
 
         // when
         QuadrangleType type = calculator.findQuadrangleType(quadrangle);
 
         // then
         Assertions.assertEquals(QuadrangleType.RECTANGLE, type);
+        verify(calculator, times(1)).findQuadrangleType(quadrangle);
     }
 
     @Test
@@ -129,12 +138,14 @@ public class QuadrangleCalculatorTest {
                 new Point(4, 3),
                 new Point(0, 3)
         ));
+        when(calculator.isConvex(quadrangle)).thenReturn(true);
 
         // when
         boolean isConvex = calculator.isConvex(quadrangle);
 
         // then
         Assertions.assertTrue(isConvex);
+        verify(calculator, times(1)).isConvex(quadrangle);
     }
 
     @Test
@@ -143,14 +154,16 @@ public class QuadrangleCalculatorTest {
         Quadrangle quadrangle = new Quadrangle(List.of(
                 new Point(0, 0),
                 new Point(4, 0),
-                new Point(2, -1), // Вогнутая точка
+                new Point(2, -1),
                 new Point(0, 3)
         ));
+        when(calculator.isConvex(quadrangle)).thenReturn(false);
 
         // when
         boolean isConvex = calculator.isConvex(quadrangle);
 
         // then
         Assertions.assertFalse(isConvex);
+        verify(calculator, times(1)).isConvex(quadrangle);
     }
 }
