@@ -1,7 +1,7 @@
-package org.example.Parser.impl;
+package org.example.parser.impl;
 
-import org.example.Point;
-import org.example.Validator.impl.PointValidator;
+import org.example.model.Point;
+import org.example.validator.impl.PointValidator;
 
 import java.util.Arrays;
 import java.util.List;

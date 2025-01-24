@@ -7,8 +7,8 @@ import java.util.UUID;
 
 public class Quadrangle implements Identifiable {
     private final UUID id;
-    private final List<Point> points;
-    private final List<Vector> vectors;
+    private List<Point> points;
+    private List<Vector> vectors;
 
     public Quadrangle(List<Point> points) {
         this.id = IdGenerator.generateId();
@@ -57,6 +57,16 @@ public class Quadrangle implements Identifiable {
     public UUID getId() {
         return id;
     }
+
+    protected void setPoints(List<Point> newPoints) {
+        if (newPoints == null || newPoints.size() != 4) {
+            throw new IllegalArgumentException("A quadrangle must have exactly 4 points.");
+        }
+        this.points.clear();
+        this.points.addAll(newPoints);
+        this.vectors = createVectors(newPoints);
+    }
+
 
     @Override
     public String toString() {

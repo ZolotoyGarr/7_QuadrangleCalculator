@@ -1,8 +1,8 @@
-package org.example.Parser.impl;
+package org.example.parser.impl;
 
-import org.example.Point;
-import org.example.Quadrangle;
-import org.example.Validator.impl.QuadrangleValidator;
+import org.example.model.Point;
+import org.example.model.Quadrangle;
+import org.example.validator.impl.QuadrangleValidator;
 
 import java.util.List;
 

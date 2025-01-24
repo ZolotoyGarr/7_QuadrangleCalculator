@@ -4,7 +4,9 @@ import org.example.calculators.QuadrangleCalculator;
 import org.example.model.Point;
 import org.example.model.Quadrangle;
 import org.example.model.QuadrangleType;
+import org.example.repository.impl.QuadrangleRepositoryInMemory;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -13,7 +15,12 @@ import static org.mockito.Mockito.*;
 
 public class QuadrangleCalculatorTest {
 
-    private final QuadrangleCalculator calculator = mock(QuadrangleCalculator.class);
+    private QuadrangleCalculator calculator;
+
+    @BeforeEach
+    void setUp() {
+        calculator = mock(QuadrangleCalculator.class);
+    }
 
     @Test
     void testCalculatePerimeter() {

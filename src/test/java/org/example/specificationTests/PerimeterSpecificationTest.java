@@ -6,6 +6,7 @@ import org.example.model.Quadrangle;
 import org.example.repository.specification.Specification;
 import org.example.repository.specification.impl.PerimeterSpecification;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -14,7 +15,12 @@ import static org.mockito.Mockito.*;
 
 public class PerimeterSpecificationTest {
 
-    private final QuadrangleCalculator calculator = mock(QuadrangleCalculator.class);
+    QuadrangleCalculator calculator;
+
+    @BeforeEach
+    void setUp() {
+        calculator = mock(QuadrangleCalculator.class);
+    }
 
     @Test
     void testSpecifiedWithinRange() {
