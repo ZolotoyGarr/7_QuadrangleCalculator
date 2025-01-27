@@ -46,10 +46,9 @@ public class QuadrangleParameters {
 
     @Override
     public String toString() {
-        return "QuadrangleParameters{" +
-                "area=" + area +
+        return  "type=" + type +
+                ", area=" + area +
                 ", perimeter=" + perimeter +
-                ", type=" + type +
                 ", isConvex=" + isConvex +
                 '}';
     }

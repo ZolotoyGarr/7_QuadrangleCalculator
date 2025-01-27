@@ -18,7 +18,7 @@ public class AutoCADRecorder implements Subscriber<Quadrangle> {
     private final Map<UUID, QuadrangleParameters> subscriptions = new HashMap<>();
     private final QuadrangleCalculator calculator;
 
-    private AutoCADRecorder(QuadrangleCalculator quadrangleCalculator) {
+    public AutoCADRecorder(QuadrangleCalculator quadrangleCalculator) {
         this.calculator = quadrangleCalculator;
     }
 

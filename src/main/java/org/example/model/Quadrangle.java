@@ -62,10 +62,10 @@ public class Quadrangle implements Identifiable {
         if (newPoints == null || newPoints.size() != 4) {
             throw new IllegalArgumentException("A quadrangle must have exactly 4 points.");
         }
-        this.points.clear();
-        this.points.addAll(newPoints);
-        this.vectors = createVectors(newPoints);
+        this.points = List.copyOf(newPoints); // Создаем новый список
+        this.vectors = createVectors(newPoints); // Обновляем векторы
     }
+
 
 
     @Override
