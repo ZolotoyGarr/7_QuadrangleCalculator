@@ -7,6 +7,7 @@
     <groupId>org.example</groupId>
     <artifactId>7_Quadrangle</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging> <!-- Изменил тип упаковки с pom на jar -->
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -43,7 +44,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- log4j 2.x dependencies -->
+        <!-- Log4j 2.x dependencies -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
@@ -67,5 +68,50 @@
             <version>4.13</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- Jackson Databind для работы с JSON -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.15.0</version>
+        </dependency>
+
+        <!-- Jackson Dataformat XML для работы с XmlMapper -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+            <version>2.15.0</version>
+        </dependency>
+
+        <!-- Mockito Inline dependency -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-inline</artifactId>
+            <version>4.0.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javiki.course</groupId>
+            <artifactId>QuadrangleSerialization</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
     </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Maven Compiler Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
