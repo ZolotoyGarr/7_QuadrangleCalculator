@@ -1,5 +1,8 @@
 package org.example.subscriber.impl;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.example.model.QuadrangleType;
@@ -10,12 +13,16 @@ import javiki.course.serialization.Statable;
 import javiki.course.serialization.StateType;
 import org.example.subscriber.Subscriber;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class AutoCADRecorder implements Subscriber<Quadrangle>, Statable<Map<String, List<QuadrangleParameters>>> {
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+@JsonDeserialize(using = AutoCADRecorderDeserializer.class)
+public class AutoCADRecorder implements Subscriber<Quadrangle>, Statable<Map<String, List<QuadrangleParameters>>>, Serializable {
 
     private static final Logger LOGGER = LogManager.getLogger(AutoCADRecorder.class);
     private final QuadrangleCalculator quadrangleCalculator;
+    @JsonProperty("subscriptions")
     private final Map<String, List<QuadrangleParameters>> subs;
 
     private AutoCADRecorder(QuadrangleCalculator quadrangleCalculator,
